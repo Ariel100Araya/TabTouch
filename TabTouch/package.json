@@ -4,30 +4,51 @@
   "description": "",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.105.0"
+    "vscode": "^1.103.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:extension.nextTab",
+    "onCommand:extension.prevTab",
+    "onCommand:extension.openCopilot",
+    "onCommand:extension.toggleTerminal",
+    "onCommand:extension.newWindow",
+    "onCommand:extension.newUntitledFile"
+  ],
   "main": "./extension.js",
-  "contributes": {
-    "commands": [{
-      "command": "TabTouch.helloWorld",
-      "title": "Hello World"
-    }]
-  },
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.105.0",
+    "@types/vscode": "^1.103.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "eslint": "^9.36.0",
     "@vscode/test-cli": "^0.0.11",
     "@vscode/test-electron": "^2.5.2"
+  },
+  "contributes": {
+    "commands": [
+      { "command": "extension.nextTab", "title": "Next Tab" },
+      { "command": "extension.prevTab", "title": "Previous Tab" },
+      { "command": "extension.openCopilot", "title": "Open Copilot" },
+      { "command": "extension.toggleTerminal", "title": "Toggle Terminal" },
+      { "command": "extension.newWindow", "title": "New Window" },
+      { "command": "extension.newUntitledFile", "title": "New Untitled File" }
+    ],
+    "menus": {
+      "touchBar": [
+        { "command": "extension.prevTab", "group": "a@1" },
+        { "command": "extension.nextTab", "group": "a@2" },
+        { "command": "extension.openCopilot", "group": "b@1" },
+        { "command": "extension.toggleTerminal", "group": "b@2" },
+        { "command": "extension.newWindow", "group": "c@2" },
+        { "command": "extension.newUntitledFile", "group": "c@3" }
+      ]
+    }
   }
 }
